@@ -1,4 +1,4 @@
-package cognizant.genc.fse;
+package DesignPatternsAndPrinciples;
 
 public class exampleclass {
 public static void main(String args[]) {

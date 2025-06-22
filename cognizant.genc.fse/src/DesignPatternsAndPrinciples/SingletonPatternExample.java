@@ -2,7 +2,7 @@ package DesignPatternsAndPrinciples;
 
 //Logger class following Singleton Pattern and Single Responsibility Principle
 class Logger {
-    private static Logger logger;
+    private static  Logger logger;
 
     private Logger() {
         System.out.println("Logger instance created.");

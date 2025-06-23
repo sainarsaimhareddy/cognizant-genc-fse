@@ -1,4 +1,4 @@
-package Algorithms_Data_Structures;
+
 
 import java.util.Scanner;
 //Financial Forecasting

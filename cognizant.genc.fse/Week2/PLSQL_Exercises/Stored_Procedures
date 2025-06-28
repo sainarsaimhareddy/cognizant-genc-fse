@@ -1,0 +1,125 @@
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR2(100),
+    emp_sal NUMBER
+);
+
+INSERT INTO employee VALUES (1, 'Rajesh', 50000);
+INSERT INTO employee VALUES (2, 'Anjali', 25000);
+INSERT INTO employee VALUES (3, 'Vikram', 75000);
+INSERT INTO employee VALUES (4, 'Priya', 40000);
+CREATE OR REPLACE PROCEDURE give_bonus IS
+    CURSOR emp_cursor IS SELECT emp_id, emp_name, emp_sal FROM employee;
+    v_emp_id employee.emp_id%TYPE;
+    v_emp_name employee.emp_name%TYPE;
+    v_emp_sal employee.emp_sal%TYPE;
+    v_bonus NUMBER;
+BEGIN
+    FOR emp_rec IN emp_cursor LOOP
+        v_emp_id := emp_rec.emp_id;
+        v_emp_name := emp_rec.emp_name;
+        v_emp_sal := emp_rec.emp_sal;
+
+        IF v_emp_sal < 30000 THEN
+            v_bonus := 3000;
+        ELSIF v_emp_sal BETWEEN 30000 AND 60000 THEN
+            v_bonus := 2000;
+        ELSE
+            v_bonus := 1000;
+        END IF;
+
+        UPDATE employee
+        SET emp_sal = emp_sal + v_bonus
+        WHERE emp_id = v_emp_id;
+
+        DBMS_OUTPUT.PUT_LINE('Employee: ' || v_emp_name ||
+                             ', ID: ' || v_emp_id ||
+                             ', Old Salary: ₹' || v_emp_sal ||
+                             ', Bonus: ₹' || v_bonus ||
+                             ', New Salary: ₹' || (v_emp_sal + v_bonus));
+    END LOOP;
+END;
+/
+SET SERVEROUTPUT ON;
+
+BEGIN
+    give_bonus;
+END;
+
+
+
+
+
+//output
+Employee: Rajesh, ID: 1, Old Salary: ₹50000, Bonus: ₹2000, New Salary: ₹52000
+Employee: Anjali, ID: 2, Old Salary: ₹25000, Bonus: ₹3000, New Salary: ₹28000
+Employee: Vikram, ID: 3, Old Salary: ₹75000, Bonus: ₹1000, New Salary: ₹76000
+Employee: Priya, ID: 4, Old Salary: ₹40000, Bonus: ₹2000, New Salary: ₹42000
+
+PL/SQL procedure successfully completed.
+//
+
+
+
+
+
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR2(100),
+    emp_sal NUMBER
+);
+
+INSERT INTO employee VALUES (1, 'Rajesh', 50000);
+INSERT INTO employee VALUES (2, 'Anjali', 25000);
+INSERT INTO employee VALUES (3, 'Vikram', 75000);
+INSERT INTO employee VALUES (4, 'Priya', 40000);
+ALTER TABLE employee ADD grade VARCHAR2(20);
+
+CREATE OR REPLACE PROCEDURE assign_grade IS
+    CURSOR emp_cursor IS SELECT emp_id, emp_name, emp_sal FROM employee;
+    v_emp_id employee.emp_id%TYPE;
+    v_emp_name employee.emp_name%TYPE;
+    v_emp_sal employee.emp_sal%TYPE;
+    v_grade VARCHAR2(20);
+BEGIN
+    FOR emp_rec IN emp_cursor LOOP
+        v_emp_id := emp_rec.emp_id;
+        v_emp_name := emp_rec.emp_name;
+        v_emp_sal := emp_rec.emp_sal;
+
+        IF v_emp_sal < 30000 THEN
+            v_grade := 'Junior';
+        ELSIF v_emp_sal BETWEEN 30000 AND 60000 THEN
+            v_grade := 'Mid-Level';
+        ELSE
+            v_grade := 'Senior';
+        END IF;
+
+        UPDATE employee
+        SET grade = v_grade
+        WHERE emp_id = v_emp_id;
+
+        DBMS_OUTPUT.PUT_LINE('Employee: ' || v_emp_name ||
+                             ', ID: ' || v_emp_id ||
+                             ', Salary: ₹' || v_emp_sal ||
+                             ', Assigned Grade: ' || v_grade);
+    END LOOP;
+END;
+/
+SET SERVEROUTPUT ON;
+
+BEGIN
+    assign_grade;
+END;
+
+
+
+
+//output
+Employee: Rajesh, ID: 1, Salary: ₹52000, Assigned Grade: Mid-Level
+Employee: Anjali, ID: 2, Salary: ₹28000, Assigned Grade: Junior
+Employee: Vikram, ID: 3, Salary: ₹76000, Assigned Grade: Senior
+Employee: Priya, ID: 4, Salary: ₹42000, Assigned Grade: Mid-Level
+
+PL/SQL procedure successfully completed.
+//

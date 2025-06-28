@@ -117,7 +117,7 @@ END;
 
 //output
 Employee: Rajesh, ID: 1, Salary: ₹52000, Assigned Grade: Mid-Level
-Employee: Anjali, ID: 2, Salary: ₹28000, Assigned Grade: Junior
+Employee: AnjaLi, ID: 2, Salary: ₹28000, Assigned Grade: Junior
 Employee: Vikram, ID: 3, Salary: ₹76000, Assigned Grade: Senior
 Employee: Priya, ID: 4, Salary: ₹42000, Assigned Grade: Mid-Level
 

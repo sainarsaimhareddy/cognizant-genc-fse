@@ -1,0 +1,100 @@
+CREATE TABLE employee (
+  emp_id INT,
+  emp_name VARCHAR2(100),
+  emp_sal INT,
+  PRIMARY KEY(emp_id)
+);
+INSERT INTO employee VALUES (1, 'Alice', 50000);
+INSERT INTO employee VALUES (2, 'Bob', 55000);
+INSERT INTO employee VALUES (3, 'Charlie', 60000);
+INSERT INTO employee VALUES (4, 'David', 52000);
+INSERT INTO employee VALUES (5, 'Eva', 58000);
+INSERT INTO employee VALUES (6, 'Frank', 61000);
+INSERT INTO employee VALUES (7, 'Grace', 57000);
+INSERT INTO employee VALUES (8, 'Henry', 53000);
+INSERT INTO employee VALUES (9, 'Ivy', 59000);
+INSERT INTO employee VALUES (10, 'Jack', 62000);
+--control structures 
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR emp_cursor IS
+        SELECT emp_name, emp_sal FROM employee;
+
+    emp_name     VARCHAR2(100);
+    emp_sal      NUMBER;
+
+    high_count   NUMBER := 0;
+    mid_count    NUMBER := 0;
+    low_count    NUMBER := 0;
+
+    i            NUMBER := 1;
+    total        NUMBER := 10;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('--- FOR LOOP Demo ---');
+    FOR j IN 1..total LOOP
+        DBMS_OUTPUT.PUT_LINE('Counting: ' || j);
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('--- WHILE LOOP Demo ---');
+    WHILE i <= 3 LOOP
+        DBMS_OUTPUT.PUT_LINE('Inside WHILE LOOP - iteration: ' || i);
+        i := i + 1;
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('--- LOOP with EXIT WHEN ---');
+
+    OPEN emp_cursor;
+    LOOP
+        FETCH emp_cursor INTO emp_name, emp_sal;
+        EXIT WHEN emp_cursor%NOTFOUND;
+
+        IF emp_sal > 58000 THEN
+            DBMS_OUTPUT.PUT_LINE(emp_name || ' earns more than 58000');
+            high_count := high_count + 1;
+        ELSIF emp_sal >= 55000 THEN
+            DBMS_OUTPUT.PUT_LINE(emp_name || ' earns between 55000 and 58000');
+            mid_count := mid_count + 1;
+        ELSE
+            DBMS_OUTPUT.PUT_LINE(emp_name || ' earns less than 55000');
+            low_count := low_count + 1;
+        END IF;
+    END LOOP;
+    CLOSE emp_cursor;
+
+    DBMS_OUTPUT.PUT_LINE('--- Final Counts ---');
+    DBMS_OUTPUT.PUT_LINE('High Earners    : ' || high_count);
+    DBMS_OUTPUT.PUT_LINE('Mid Earners     : ' || mid_count);
+    DBMS_OUTPUT.PUT_LINE('Low Earners     : ' || low_count);
+END;
+//output
+--- FOR LOOP Demo ---
+Counting: 1
+Counting: 2
+Counting: 3
+Counting: 4
+Counting: 5
+Counting: 6
+Counting: 7
+Counting: 8
+Counting: 9
+Counting: 10
+--- WHILE LOOP Demo ---
+Inside WHILE LOOP - iteration: 1
+Inside WHILE LOOP - iteration: 2
+Inside WHILE LOOP - iteration: 3
+--- LOOP with EXIT WHEN ---
+Alice earns less than 55000
+Bob earns between 55000 and 58000
+Charlie earns more than 58000
+David earns less than 55000
+Eva earns between 55000 and 58000
+Frank earns more than 58000
+Grace earns between 55000 and 58000
+Henry earns less than 55000
+Ivy earns more than 58000
+Jack earns more than 58000
+--- Final Counts ---
+High Earners : 4
+Mid Earners : 3
+Low Earners : 3

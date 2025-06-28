@@ -35,5 +35,5 @@ public class Setting_Up_JUnit {
        assertEquals(expected+1, object.square(input));
    }
    
-    
+  
 }

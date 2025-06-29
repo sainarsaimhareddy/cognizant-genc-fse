@@ -1,0 +1,32 @@
+1. Setup Using Maven (pom.xml)
+If you are using Maven for your project, you can add the JUnit Jupiter dependency to your pom.xml file.
+
+<dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.10.2</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+After adding the dependency, you can run your tests using mvn test from your terminal, or by right-clicking the test class in your IDE and choosing Run As > JUnit Test.
+
+2. Setup in Eclipse (No Maven)
+For projects in Eclipse without Maven, follow these steps to add the JUnit library:
+
+Right-click on your project in the Project Explorer.
+
+Select Build Path > Configure Build Path....
+
+Go to the Libraries tab.
+
+Click the Add Library... button.
+
+Choose JUnit from the list of libraries.
+
+Select JUnit 5 as the JUnit version.
+
+Click Finish.
+
+Finally, click Apply and Close to save the changes.

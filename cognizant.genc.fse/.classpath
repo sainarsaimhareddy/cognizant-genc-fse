@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="Week1"/>
 	<classpathentry excluding=" SL4J Logging exercises/| SL4J Logging exercises/" kind="src" path="Week2"/>
 	<classpathentry kind="src" path="Week2/ SL4J Logging exercises"/>
+	<classpathentry kind="src" path="Week3"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
 			<attribute name="module" value="true"/>

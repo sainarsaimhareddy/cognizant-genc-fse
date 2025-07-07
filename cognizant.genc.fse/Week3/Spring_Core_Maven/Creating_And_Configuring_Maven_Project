@@ -1,0 +1,52 @@
+Spring Boot Maven Project Setup (from start.spring.io)
+Download the ZIP file from https://start.spring.io
+
+Extract the ZIP to a folder
+
+Open the folder in your IDE (IntelliJ, Eclipse, VS Code)
+
+Wait for Maven to finish downloading dependencies (auto or via "Import Maven Project" if prompted)
+
+Run the application:
+
+From IDE: Run DemoApplication.java
+
+From terminal:
+
+arduino
+CopyEdit
+./mvnw spring-boot:run
+Visit http://localhost:8080/ in your browser
+
+(Optional) Add a controller in src/main/java/com/example/demo/HelloController.java:
+
+java
+CopyEdit
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+    @GetMapping("/")
+    public String hello() {
+        return "Hello, Spring Boot!";
+    }
+}
+(Optional) Edit src/main/resources/application.properties:
+
+ini
+CopyEdit
+server.port=8080
+spring.application.name=demo-app
+To build:
+
+bash
+CopyEdit
+./mvnw clean install
+To run the JAR:
+
+bash
+CopyEdit
+java -jar target/your-app-name.jar

@@ -1,0 +1,35 @@
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/country")
+public class Controller {
+private Map<String,String> countryMap;
+@Autowired
+public Controller(CountryMapper countryMap) {
+this.countryMap=countryMap.getCountryMap();
+}
+@GetMapping("/")
+public String initiatePath() {
+return "Welcome enter code";
+}
+@GetMapping("/getCountryName")
+public String getCountryName(@RequestBody CountryRequest countryRequest ) {
+if(countryMap==null)return "the mapper is null";
+String name=countryMap.get(countryRequest.getCode().toUpperCase());
+if(name==null)return "no country with that code";
+return name;
+}
+@PostMapping("/putCountryName")
+public String putCountryName(@RequestBody CountryRequest countryRequest) {
+return "sent data "+countryRequest.getCode()+" ";
+}
+}

@@ -1,0 +1,31 @@
+import java.util.Map;
+
+
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import org.springframework.stereotype.Component;
+
+
+
+@Component("countrymapper")
+
+@ConfigurationProperties(prefix="countries")
+
+public class CountryMapper {
+
+	private Map<String,String> countryMap;
+
+	public void setCountryMap(Map<String,String> countryMap) {
+
+		this.countryMap=countryMap;
+
+	}
+
+	public Map<String,String> getCountryMap(){
+
+		return this.countryMap;
+
+	}
+
+}

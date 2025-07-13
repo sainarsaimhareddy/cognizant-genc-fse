@@ -1,0 +1,23 @@
+countries:
+
+  countryMap:
+
+    IN: "INDIA"
+
+    US: "United States"
+
+    CA: "Canada"
+
+    AU: "Australia"
+
+    UK: "United Kingdom"
+
+    DE: "Germany"
+
+    FR: "France"
+
+    JP: "Japan"
+
+    CN: "China"
+
+    BR: "Brazil"
